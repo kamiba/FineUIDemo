@@ -123,29 +123,25 @@ namespace FineUIDemo
         {
             int id = Convert.ToInt32(Grid1.DataKeys[e.RowIndex][0]);
 
-            //if (e.CommandName == "Delete")
-            //{
-            //    // 在操作之前进行权限检查
-            //    if (!CheckPowerDelete())
-            //    {
-            //        CheckPowerFailWithAlert();
-            //        return;
-            //    }
+            if (e.CommandName == "Delete")
+            {
 
-            //    SqlQuery q = new Select().From<XJobTitleUser>();
-            //    q.And(XJobTitleUser.JobTitleIdColumn).IsEqualTo(id);
+                try
+                {
 
-            //    int userCountUnderThisJobTitle = q.GetRecordCount();
-            //    if (userCountUnderThisJobTitle > 0)
-            //    {
-            //        Alert.ShowInTop("删除失败！需要先清空拥有此职务的用户！");
-            //        return;
-            //    }
+                    m_bllCK_ProductType.Delete(id);
+                    BindGrid();
 
-            //    XJobTitle.Delete(id);
 
-            //    BindGrid();
-            //}
+                }
+                catch (Exception ex)
+                {
+                    Alert.ShowInTop(ex.ToString());
+                    return;
+                }
+
+           
+            }
         }
 
         protected void Window1_Close(object sender, EventArgs e)

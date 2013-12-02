@@ -36,7 +36,7 @@ namespace FineUIDemo
 
         #region Events
 
-        private void SaveJobTitle()
+        private void SaveProductType()
         {
             TSM.Model.CK_ProductType modelCK_ProductType = new TSM.Model.CK_ProductType();
             modelCK_ProductType.CK_ProductTypeName = tbxName.Text.Trim();
@@ -48,7 +48,7 @@ namespace FineUIDemo
 
         protected void btnSaveClose_Click(object sender, EventArgs e)
         {
-            SaveJobTitle();
+            SaveProductType();
 
             //Alert.Show("添加成功！", String.Empty, ActiveWindow.GetHidePostBackReference());
             PageContext.RegisterStartupScript(ActiveWindow.GetHidePostBackReference());
