@@ -24,7 +24,7 @@
                     <x:ContentPanel runat="server" CssClass="top-header" ShowBorder="false" ShowHeader="false"
                         EnableBackgroundColor="true">
                         <div class="title">
-                            示例首页
+                            取送货管理系统
                         </div>
                     </x:ContentPanel>
                 </Items>
@@ -42,7 +42,7 @@
                 <Items>
                     <x:TabStrip ID="mainTabStrip" ShowBorder="false" runat="server">
                         <Tabs>
-                            <x:Tab runat="server" Title="首页" EnableIFrame="true" IFrameUrl="~/examples/basic/fineui.aspx"
+                            <x:Tab runat="server" Title="首页" EnableIFrame="true" IFrameUrl="~/CK_ProductType.aspx"
                                 IFrameName="mainframe">
                             </x:Tab>
                         </Tabs>

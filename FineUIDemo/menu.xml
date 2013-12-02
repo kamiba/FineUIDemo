@@ -1,32 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Tree>
-  <TreeNode Text="内联框架" SingleClickExpand="true" Expanded="true">
-    <TreeNode Text="窗体" NavigateUrl="~/examples/iframe/window.aspx" Target="mainframe">
-    </TreeNode>
-    <TreeNode Text="窗体中的窗体" Target="mainframe" NavigateUrl="~/examples/iframe/iframe_iframe.aspx">
-    </TreeNode>
-    <TreeNode Text="子窗口向父窗口传值" Target="mainframe" NavigateUrl="~/examples/iframe/passvalue_iframe.aspx" >
-    </TreeNode>
-    <TreeNode Text="新窗口中选择省份一" Target="mainframe" NavigateUrl="~/examples/iframe/selectprovince1.aspx" >
-    </TreeNode>
-    <TreeNode Text="新窗口中选择省份二" Target="mainframe" NavigateUrl="~/examples/iframe/selectprovince2.aspx" >
-    </TreeNode>
-    <TreeNode Text="新窗口中选择省份三" Target="mainframe" NavigateUrl="~/examples/iframe/selectprovince3.aspx" >
+  <TreeNode Text="基础信息" SingleClickExpand="true" Expanded="true">
+    <TreeNode Text="分类管理" Target="mainframe" NavigateUrl="~/CK_ProductType.aspx">
     </TreeNode>
 
+
   </TreeNode>
-  <TreeNode Text="内联框架2" SingleClickExpand="true" Expanded="true">
-    <TreeNode Text="窗体" NavigateUrl="~/examples/iframe/window.aspx" Target="mainframe">
-    </TreeNode>
-    <TreeNode Text="窗体中的窗体" Target="mainframe" NavigateUrl="~/examples/iframe/iframe_iframe.aspx">
-    </TreeNode>
-    <TreeNode Text="子窗口向父窗口传值" Target="mainframe" NavigateUrl="~/examples/iframe/passvalue_iframe.aspx" >
-    </TreeNode>
-    <TreeNode Text="新窗口中选择省份一" Target="mainframe" NavigateUrl="~/examples/iframe/selectprovince1.aspx" >
-    </TreeNode>
-    <TreeNode Text="新窗口中选择省份二" Target="mainframe" NavigateUrl="~/examples/iframe/selectprovince2.aspx" >
-    </TreeNode>
-    <TreeNode Text="新窗口中选择省份三" Target="mainframe" NavigateUrl="~/examples/iframe/selectprovince3.aspx" >
+  <TreeNode Text="取送货管理" SingleClickExpand="true" Expanded="true">
+    <TreeNode Text="取货管理" Target="mainframe" NavigateUrl="~/CK_ProductType.aspx">
     </TreeNode>
 
   </TreeNode>
