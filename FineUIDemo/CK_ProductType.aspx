@@ -50,7 +50,7 @@
                     <x:BoundField DataField="CK_ProductTypeName" SortField="CK_ProductTypeName" Width="100px" HeaderText="分类名称" />
            
                     <x:WindowField ColumnID="editField" TextAlign="Center" Icon="Pencil" ToolTip="编辑" WindowID="Window1"
-                        Title="编辑" DataIFrameUrlFields="CK_ProductTypeID" DataIFrameUrlFormatString="~/admin/jobtitle_edit.aspx?id={0}"
+                        Title="编辑" DataIFrameUrlFields="CK_ProductTypeID" DataIFrameUrlFormatString="~/CK_ProductType_edit.aspx?id={0}"
                         Width="50px" />
                     <x:LinkButtonField ColumnID="deleteField" TextAlign="Center" Icon="Delete" ToolTip="删除" ConfirmText="确定删除此记录？"
                         ConfirmTarget="Top" CommandName="Delete" Width="50px" />

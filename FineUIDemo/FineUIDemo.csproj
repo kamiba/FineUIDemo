@@ -54,6 +54,7 @@
     <Content Include="CK_ProductType.aspx" />
     <Content Include="default.aspx" />
     <Content Include="CK_ProductType_new.aspx" />
+    <Content Include="CK_ProductType_edit.aspx" />
     <Content Include="main.aspx" />
     <Content Include="menu.xml" />
     <Content Include="Web.config" />
@@ -79,6 +80,13 @@
     </Compile>
     <Compile Include="CK_ProductType_new.aspx.designer.cs">
       <DependentUpon>CK_ProductType_new.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CK_ProductType_edit.aspx.cs">
+      <DependentUpon>CK_ProductType_edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CK_ProductType_edit.aspx.designer.cs">
+      <DependentUpon>CK_ProductType_edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="main.aspx.cs">
       <DependentUpon>main.aspx</DependentUpon>
