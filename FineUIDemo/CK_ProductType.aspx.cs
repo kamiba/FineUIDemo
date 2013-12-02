@@ -28,7 +28,7 @@ namespace FineUIDemo
         {
 
 
-            btnNew.OnClientClick = Window1.GetShowReference("~/admin/jobtitle_new.aspx", "新增职务");
+            btnNew.OnClientClick = Window1.GetShowReference("~/CK_ProductType_new.aspx", "新增分类");
 
             //// 默认的排序列和排序方向
             //Grid1.SortColumnIndex = 0;
