@@ -71,6 +71,7 @@ CREATE TABLE dbo.CK_Payment(
 );
 
 --分页存储过程
+--页码从1开始
 CREATE PROCEDURE [dbo].[UP_GetRecordByPage]
 @tblName varchar(255), -- 表名
 @fldName varchar(255), -- 主键字段名
