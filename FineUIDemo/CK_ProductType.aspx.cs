@@ -45,13 +45,20 @@ namespace FineUIDemo
 
         private void BindGrid()
         {
-            DataSet ds = m_bllCK_ProductType.GetList("");
+            DataSet ds;
+            string searchText = ttbSearchMessage.Text.Trim();
+            string strWhere = "";
+            if (!String.IsNullOrEmpty(searchText))
+            {
+                strWhere = "CK_ProductTypeName = '" + searchText + "'";
+            }
 
+            ds = m_bllCK_ProductType.GetList(strWhere);
             // 在查询添加之后，排序和分页之前获取总记录数
             // Grid1总共有多少条记录
             Grid1.RecordCount = ds.Tables[0].Rows.Count;
 
-            ds = m_bllCK_ProductType.GetList(Grid1.PageSize,Grid1.PageIndex+1, "");
+            ds = m_bllCK_ProductType.GetList(Grid1.PageSize, Grid1.PageIndex + 1, strWhere);
 
 
             Grid1.DataSource = ds.Tables[0];
