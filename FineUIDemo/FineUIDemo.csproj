@@ -56,6 +56,7 @@
     <Content Include="CK_People_new.aspx" />
     <Content Include="CK_Product.aspx" />
     <Content Include="CK_ProductType.aspx" />
+    <Content Include="CK_Product_edit.aspx" />
     <Content Include="CK_Product_new.aspx" />
     <Content Include="default.aspx" />
     <Content Include="CK_ProductType_new.aspx" />
@@ -99,6 +100,13 @@
     </Compile>
     <Compile Include="CK_ProductType.aspx.designer.cs">
       <DependentUpon>CK_ProductType.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CK_Product_edit.aspx.cs">
+      <DependentUpon>CK_Product_edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CK_Product_edit.aspx.designer.cs">
+      <DependentUpon>CK_Product_edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="CK_Product_new.aspx.cs">
       <DependentUpon>CK_Product_new.aspx</DependentUpon>
