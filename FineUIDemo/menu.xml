@@ -5,7 +5,8 @@
     </TreeNode>
     <TreeNode Text="加工人员管理" Target="mainframe" NavigateUrl="~/CK_People.aspx">
     </TreeNode>
-
+    <TreeNode Text="产品管理" Target="mainframe" NavigateUrl="~/CK_Product.aspx">
+    </TreeNode>
   </TreeNode>
   <TreeNode Text="取送货管理" SingleClickExpand="true" Expanded="true">
     <TreeNode Text="取货管理" Target="mainframe" NavigateUrl="~/CK_ProductType.aspx">
