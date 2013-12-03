@@ -1,0 +1,4 @@
+CREATE VIEW [dbo].[v_listProductInfo]
+AS
+select ck_productid,ck_productname, ck_productprice, ck_productType.ck_productTypename from ck_product 
+join ck_productType on ck_product.ck_productTypeid = ck_productType.ck_productTypeid
