@@ -1,0 +1,118 @@
+--产品分类表
+IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
+      WHERE TABLE_NAME = 'CK_ProductType')
+   DROP TABLE CK_ProductType
+CREATE TABLE dbo.CK_ProductType(
+  CK_ProductTypeID          INT IDENTITY   NOT NULL PRIMARY KEY NONCLUSTERED,
+  CK_ProductTypeName		VARCHAR(64) NOT NULL DEFAULT '' 
+);
+ 
+--产品信息表
+IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
+      WHERE TABLE_NAME = 'CK_Product')
+   DROP TABLE CK_Product
+CREATE TABLE dbo.CK_Product(
+  CK_ProductID          INT IDENTITY   NOT NULL PRIMARY KEY NONCLUSTERED,
+  CK_ProductTypeID		INT NOT NULL  FOREIGN KEY REFERENCES CK_ProductType(CK_ProductTypeID) ON UPDATE CASCADE,	
+  CK_ProductName		VARCHAR(100) NOT NULL DEFAULT '',
+  CK_ProductPrice		DECIMAL(10,2) NOT NULL DEFAULT 0
+);
+--取送货人表
+IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
+      WHERE TABLE_NAME = 'CK_People')
+   DROP TABLE CK_People
+CREATE TABLE dbo.CK_People(
+  CK_PeopleID          INT IDENTITY   NOT NULL PRIMARY KEY NONCLUSTERED,
+  CK_PeopleName VARCHAR(32) NOT NULL DEFAULT '',
+  CK_PhoneNo VARCHAR(32) NOT NULL DEFAULT '', 
+  CK_Comment VARCHAR(100) NOT NULL DEFAULT '' 
+);
+
+--取货信息表
+IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
+      WHERE TABLE_NAME = 'CK_TakeGoods')
+   DROP TABLE CK_TakeGoods
+CREATE TABLE dbo.CK_TakeGoods(
+  CK_TakeGoodsID        INT IDENTITY   NOT NULL PRIMARY KEY NONCLUSTERED,
+  CK_ProductTypeID		INT NOT NULL  FOREIGN KEY REFERENCES CK_ProductType(CK_ProductTypeID),
+  CK_PeopleID			INT NOT NULL  FOREIGN KEY REFERENCES CK_People(CK_PeopleID) ON UPDATE CASCADE,
+  CK_ProductID			INT NOT NULL  FOREIGN KEY REFERENCES CK_Product(CK_ProductID) ON UPDATE CASCADE,
+  CK_TakeGoodsNo		VARCHAR(32) NOT NULL DEFAULT '',
+  CK_TakeGoodsAmount	INT NOT NULL DEFAULT 0,
+  CK_TakeGoodsDate		DATETIME   not NULL DEFAULT '' 
+);
+
+
+--送货信息表
+IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
+      WHERE TABLE_NAME = 'CK_SendGoods')
+   DROP TABLE CK_SendGoods
+CREATE TABLE dbo.CK_SendGoods(
+  CK_SendGoodsID        INT IDENTITY   NOT NULL PRIMARY KEY NONCLUSTERED,
+  CK_ProductTypeID		INT NOT NULL  FOREIGN KEY REFERENCES CK_ProductType(CK_ProductTypeID) ,
+  CK_PeopleID			INT NOT NULL  FOREIGN KEY REFERENCES CK_People(CK_PeopleID) ON UPDATE CASCADE,
+  CK_ProductID			INT NOT NULL  FOREIGN KEY REFERENCES CK_Product(CK_ProductID) ON UPDATE CASCADE,
+  CK_SendGoodsNo		VARCHAR(32) NOT NULL DEFAULT '',
+  CK_SendGoodsAmount	INT NOT NULL DEFAULT 0,
+  CK_SendGoodsDate		DATETIME   not NULL DEFAULT '' 
+);
+
+--加工费支付信息表
+IF EXISTS(SELECT TABLE_NAME FROM INFORMATION_SCHEMA.TABLES
+      WHERE TABLE_NAME = 'CK_Payment')
+   DROP TABLE CK_Payment
+CREATE TABLE dbo.CK_Payment(
+    CK_PaymentID        INT IDENTITY   NOT NULL PRIMARY KEY NONCLUSTERED,
+	CK_PeopleID			INT NOT NULL  FOREIGN KEY REFERENCES CK_People(CK_PeopleID) ON UPDATE CASCADE,
+	CK_SendGoodsID		INT NOT NULL  FOREIGN KEY REFERENCES CK_SendGoods(CK_SendGoodsID),
+	CK_PayDate			DATETIME   NOT NULL DEFAULT '', 
+	CK_PayMoney			DECIMAL(10,2) NOT NULL DEFAULT 0,
+	CK_PayComment		VARCHAR(100) NOT NULL DEFAULT ''
+);
+
+--分页存储过程
+--页码从1开始
+CREATE PROCEDURE [dbo].[UP_GetRecordByPage]
+@tblName varchar(255), -- 表名
+@fldName varchar(255), -- 主键字段名
+@PageSize int = 10, -- 页尺寸
+@PageIndex int = 1, -- 页码
+@IsReCount bit = 0, -- 返回记录总数, 非 0 值则返回
+@OrderType bit = 0, -- 设置排序类型, 非 0 值则降序
+@strWhere varchar(1000) = '' -- 查询条件 (注意: 不要加 where)
+AS
+declare @strSQL varchar(6000) -- 主语句
+declare @strTmp varchar(100) -- 临时变量(查询条件过长时可能会出错，可修改100为1000)
+declare @strOrder varchar(400) -- 排序类型
+if @OrderType != 0
+begin
+set @strTmp = '<(select min'
+set @strOrder = ' order by [' + @fldName +'] desc'
+end
+else
+begin
+set @strTmp = '>(select max'
+set @strOrder = ' order by [' + @fldName +'] asc'
+end
+set @strSQL = 'select top ' + str(@PageSize) + ' * from ['
++ @tblName + '] where [' + @fldName + ']' + @strTmp + '(['
++ @fldName + ']) from (select top ' + str((@PageIndex-1)*@PageSize) + ' ['
++ @fldName + '] from [' + @tblName + ']' + @strOrder + ') as tblTmp)'
++ @strOrder
+if @strWhere != ''
+set @strSQL = 'select top ' + str(@PageSize) + ' * from ['
++ @tblName + '] where [' + @fldName + ']' + @strTmp + '(['
++ @fldName + ']) from (select top ' + str((@PageIndex-1)*@PageSize) + ' ['
++ @fldName + '] from [' + @tblName + '] where ' + @strWhere + ' '
++ @strOrder + ') as tblTmp) and ' + @strWhere + ' ' + @strOrder
+if @PageIndex = 1
+begin
+set @strTmp =''
+if @strWhere != ''
+set @strTmp = ' where ' + @strWhere
+set @strSQL = 'select top ' + str(@PageSize) + ' * from ['
++ @tblName + ']' + @strTmp + ' ' + @strOrder
+end
+if @IsReCount != 0
+set @strSQL = 'select count(*) as Total from [' + @tblName + ']'+' where ' + @strWhere
+exec (@strSQL)
