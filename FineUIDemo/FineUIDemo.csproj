@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CK_People.aspx" />
+    <Content Include="CK_People_edit.aspx" />
     <Content Include="CK_People_new.aspx" />
     <Content Include="CK_ProductType.aspx" />
     <Content Include="default.aspx" />
@@ -68,6 +69,13 @@
     </Compile>
     <Compile Include="CK_People.aspx.designer.cs">
       <DependentUpon>CK_People.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CK_People_edit.aspx.cs">
+      <DependentUpon>CK_People_edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CK_People_edit.aspx.designer.cs">
+      <DependentUpon>CK_People_edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="CK_People_new.aspx.cs">
       <DependentUpon>CK_People_new.aspx</DependentUpon>
