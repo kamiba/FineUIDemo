@@ -176,7 +176,7 @@ namespace TSM.DAL
 			return DbHelperSQL.Query(strSql.ToString());
 		}
 
-		/*
+		
 		/// <summary>
 		/// 分页获取数据列表
 		/// </summary>
@@ -192,14 +192,14 @@ namespace TSM.DAL
 					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
 					};
 			parameters[0].Value = "CK_People";
-			parameters[1].Value = "ID";
+            parameters[1].Value = "CK_PeopleID";
 			parameters[2].Value = PageSize;
 			parameters[3].Value = PageIndex;
 			parameters[4].Value = 0;
 			parameters[5].Value = 0;
 			parameters[6].Value = strWhere;	
 			return DbHelperSQL.RunProcedure("UP_GetRecordByPage",parameters,"ds");
-		}*/
+		}
 
 		#endregion  成员方法
 	}
