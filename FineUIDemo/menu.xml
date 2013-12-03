@@ -3,7 +3,8 @@
   <TreeNode Text="基础信息" SingleClickExpand="true" Expanded="true">
     <TreeNode Text="分类管理" Target="mainframe" NavigateUrl="~/CK_ProductType.aspx">
     </TreeNode>
-
+    <TreeNode Text="加工人员管理" Target="mainframe" NavigateUrl="~/CK_People.aspx">
+    </TreeNode>
 
   </TreeNode>
   <TreeNode Text="取送货管理" SingleClickExpand="true" Expanded="true">
