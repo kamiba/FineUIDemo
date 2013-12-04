@@ -1,0 +1,8 @@
+CREATE VIEW [dbo].[v_listTakeGoodsInfo]
+AS
+select ck_takegoods.ck_takegoodsid, ck_takegoods.ck_takegoodsno, ck_takegoods.ck_takegoodsdate
+,ck_people.ck_peoplename,ck_producttype.ck_producttypename
+, ck_product.ck_productname , ck_takegoods.ck_takegoodsAmount from ck_takegoods
+join ck_producttype on ck_producttype.ck_producttypeid = ck_takegoods.ck_producttypeid
+join ck_people on ck_people.ck_peopleid = ck_takegoods.ck_peopleid
+join ck_product on ck_product.ck_productid = ck_takegoods.ck_productid
