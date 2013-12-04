@@ -152,8 +152,8 @@ namespace TSM.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select CK_ProductID,CK_ProductTypeID,CK_ProductName,CK_ProductPrice ");
-			strSql.Append(" FROM CK_Product ");
+			strSql.Append("select * ");
+            strSql.Append(" FROM v_listProductInfo ");
 			if(strWhere.Trim()!="")
 			{
 				strSql.Append(" where "+strWhere);

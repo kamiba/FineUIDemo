@@ -176,17 +176,28 @@ namespace TSM.DAL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public DataSet GetList(string strWhere)
-		{
-			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select CK_TakeGoodsID,CK_ProductTypeID,CK_PeopleID,CK_ProductID,CK_TakeGoodsNo,CK_TakeGoodsAmount,CK_TakeGoodsDate ");
-			strSql.Append(" FROM CK_TakeGoods ");
-			if(strWhere.Trim()!="")
-			{
-				strSql.Append(" where "+strWhere);
-			}
-			return DbHelperSQL.Query(strSql.ToString());
-		}
+        //public DataSet GetList(string strWhere)
+        //{
+        //    StringBuilder strSql=new StringBuilder();
+        //    strSql.Append("select CK_TakeGoodsID,CK_ProductTypeID,CK_PeopleID,CK_ProductID,CK_TakeGoodsNo,CK_TakeGoodsAmount,CK_TakeGoodsDate ");
+        //    strSql.Append(" FROM CK_TakeGoods ");
+        //    if(strWhere.Trim()!="")
+        //    {
+        //        strSql.Append(" where "+strWhere);
+        //    }
+        //    return DbHelperSQL.Query(strSql.ToString());
+        //}
+        public DataSet GetList(string strWhere)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * ");
+            strSql.Append(" FROM v_listTakeGoodsInfo ");
+            if (strWhere.Trim() != "")
+            {
+                strSql.Append(" where " + strWhere);
+            }
+            return DbHelperSQL.Query(strSql.ToString());
+        }
 
 		/// <summary>
 		/// 获得前几行数据
@@ -209,7 +220,7 @@ namespace TSM.DAL
 			return DbHelperSQL.Query(strSql.ToString());
 		}
 
-		/*
+		
 		/// <summary>
 		/// 分页获取数据列表
 		/// </summary>
@@ -224,15 +235,15 @@ namespace TSM.DAL
 					new SqlParameter("@OrderType", SqlDbType.Bit),
 					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
 					};
-			parameters[0].Value = "CK_TakeGoods";
-			parameters[1].Value = "ID";
+            parameters[0].Value = "v_listTakeGoodsInfo";
+            parameters[1].Value = "CK_TakeGoodsID";
 			parameters[2].Value = PageSize;
 			parameters[3].Value = PageIndex;
 			parameters[4].Value = 0;
 			parameters[5].Value = 0;
 			parameters[6].Value = strWhere;	
 			return DbHelperSQL.RunProcedure("UP_GetRecordByPage",parameters,"ds");
-		}*/
+		}
 
 		#endregion  成员方法
 	}
