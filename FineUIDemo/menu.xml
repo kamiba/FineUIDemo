@@ -11,6 +11,7 @@
   <TreeNode Text="取送货管理" SingleClickExpand="true" Expanded="true">
     <TreeNode Text="取货管理" Target="mainframe" NavigateUrl="~/CK_TakeGoods.aspx">
     </TreeNode>
-
+    <TreeNode Text="送货管理" Target="mainframe" NavigateUrl="~/CK_SendGoods.aspx">
+    </TreeNode>
   </TreeNode>
 </Tree>

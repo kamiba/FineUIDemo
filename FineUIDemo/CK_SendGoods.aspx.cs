@@ -11,10 +11,10 @@ using System.IO;
 
 namespace FineUIDemo
 {
-    public partial class TakeGoods : Page
+    public partial class SendGoods : Page
     {
 
-        private TSM.BLL.CK_TakeGoods m_bllCK_TakeGoods = new TSM.BLL.CK_TakeGoods();
+        private TSM.BLL.CK_SendGoods m_bllCK_SendGoods = new TSM.BLL.CK_SendGoods();
 
         #region Page_Load
 
@@ -30,7 +30,7 @@ namespace FineUIDemo
         {
 
 
-            btnNew.OnClientClick = Window1.GetShowReference("~/CK_TakeGoods_new.aspx", "新增产品");
+            btnNew.OnClientClick = Window1.GetShowReference("~/CK_SendGoods_new.aspx", "新增产品");
 
             //// 默认的排序列和排序方向
             //Grid1.SortColumnIndex = 0;
@@ -55,12 +55,12 @@ namespace FineUIDemo
                 strWhere = "ck_productname = '" + searchText + "'";
             }
 
-            ds = m_bllCK_TakeGoods.GetList(strWhere);
+            ds = m_bllCK_SendGoods.GetList(strWhere);
             // 在查询添加之后，排序和分页之前获取总记录数
             // Grid1总共有多少条记录
             Grid1.RecordCount = ds.Tables[0].Rows.Count;
 
-            ds = m_bllCK_TakeGoods.GetList(Grid1.PageSize, Grid1.PageIndex + 1, strWhere);
+            ds = m_bllCK_SendGoods.GetList(Grid1.PageSize, Grid1.PageIndex + 1, strWhere);
 
 
             Grid1.DataSource = ds.Tables[0];
@@ -138,7 +138,7 @@ namespace FineUIDemo
                 try
                 {
 
-                    m_bllCK_TakeGoods.Delete(id);
+                    m_bllCK_SendGoods.Delete(id);
                     BindGrid();
 
 
@@ -182,7 +182,7 @@ namespace FineUIDemo
             sb.Append("</tr>");
 
             //DataTable dtTemp = (DataTable)Grid1.DataSource;
-            //DataSet ds = m_bllCK_TakeGoods.GetList("");
+            //DataSet ds = m_bllCK_SendGoods.GetList("");
             //Grid1.DataSource = ds.Tables[0];
             //Grid1.DataBind();
             foreach (GridRow row in grid.Rows)

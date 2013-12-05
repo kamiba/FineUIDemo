@@ -11,7 +11,7 @@
 namespace FineUIDemo {
     
     
-    public partial class TakeGoods {
+    public partial class SendGoods {
         
         /// <summary>
         /// form1 控件。
