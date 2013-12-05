@@ -45,23 +45,21 @@ namespace TSM.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into CK_SendGoods(");
-			strSql.Append("CK_ProductTypeID,CK_PeopleID,CK_ProductID,CK_SendGoodsNo,CK_SendGoodsAmount,CK_SendGoodsDate)");
+			strSql.Append("CK_PeopleID,CK_ProductID,CK_SendGoodsNo,CK_SendGoodsAmount,CK_SendGoodsDate)");
 			strSql.Append(" values (");
-			strSql.Append("@CK_ProductTypeID,@CK_PeopleID,@CK_ProductID,@CK_SendGoodsNo,@CK_SendGoodsAmount,@CK_SendGoodsDate)");
+			strSql.Append("@CK_PeopleID,@CK_ProductID,@CK_SendGoodsNo,@CK_SendGoodsAmount,@CK_SendGoodsDate)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
-					new SqlParameter("@CK_ProductTypeID", SqlDbType.Int,4),
 					new SqlParameter("@CK_PeopleID", SqlDbType.Int,4),
 					new SqlParameter("@CK_ProductID", SqlDbType.Int,4),
 					new SqlParameter("@CK_SendGoodsNo", SqlDbType.VarChar,32),
 					new SqlParameter("@CK_SendGoodsAmount", SqlDbType.Int,4),
 					new SqlParameter("@CK_SendGoodsDate", SqlDbType.DateTime)};
-			parameters[0].Value = model.CK_ProductTypeID;
-			parameters[1].Value = model.CK_PeopleID;
-			parameters[2].Value = model.CK_ProductID;
-			parameters[3].Value = model.CK_SendGoodsNo;
-			parameters[4].Value = model.CK_SendGoodsAmount;
-			parameters[5].Value = model.CK_SendGoodsDate;
+			parameters[0].Value = model.CK_PeopleID;
+			parameters[1].Value = model.CK_ProductID;
+			parameters[2].Value = model.CK_SendGoodsNo;
+			parameters[3].Value = model.CK_SendGoodsAmount;
+			parameters[4].Value = model.CK_SendGoodsDate;
 
 			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
 			if (obj == null)
@@ -80,7 +78,6 @@ namespace TSM.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("update CK_SendGoods set ");
-			strSql.Append("CK_ProductTypeID=@CK_ProductTypeID,");
 			strSql.Append("CK_PeopleID=@CK_PeopleID,");
 			strSql.Append("CK_ProductID=@CK_ProductID,");
 			strSql.Append("CK_SendGoodsNo=@CK_SendGoodsNo,");
@@ -89,19 +86,17 @@ namespace TSM.DAL
 			strSql.Append(" where CK_SendGoodsID=@CK_SendGoodsID ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@CK_SendGoodsID", SqlDbType.Int,4),
-					new SqlParameter("@CK_ProductTypeID", SqlDbType.Int,4),
 					new SqlParameter("@CK_PeopleID", SqlDbType.Int,4),
 					new SqlParameter("@CK_ProductID", SqlDbType.Int,4),
 					new SqlParameter("@CK_SendGoodsNo", SqlDbType.VarChar,32),
 					new SqlParameter("@CK_SendGoodsAmount", SqlDbType.Int,4),
 					new SqlParameter("@CK_SendGoodsDate", SqlDbType.DateTime)};
 			parameters[0].Value = model.CK_SendGoodsID;
-			parameters[1].Value = model.CK_ProductTypeID;
-			parameters[2].Value = model.CK_PeopleID;
-			parameters[3].Value = model.CK_ProductID;
-			parameters[4].Value = model.CK_SendGoodsNo;
-			parameters[5].Value = model.CK_SendGoodsAmount;
-			parameters[6].Value = model.CK_SendGoodsDate;
+			parameters[1].Value = model.CK_PeopleID;
+			parameters[2].Value = model.CK_ProductID;
+			parameters[3].Value = model.CK_SendGoodsNo;
+			parameters[4].Value = model.CK_SendGoodsAmount;
+			parameters[5].Value = model.CK_SendGoodsDate;
 
 			DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 		}
@@ -130,7 +125,7 @@ namespace TSM.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 CK_SendGoodsID,CK_ProductTypeID,CK_PeopleID,CK_ProductID,CK_SendGoodsNo,CK_SendGoodsAmount,CK_SendGoodsDate from CK_SendGoods ");
+			strSql.Append("select  top 1 CK_SendGoodsID,CK_PeopleID,CK_ProductID,CK_SendGoodsNo,CK_SendGoodsAmount,CK_SendGoodsDate from CK_SendGoods ");
 			strSql.Append(" where CK_SendGoodsID=@CK_SendGoodsID ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@CK_SendGoodsID", SqlDbType.Int,4)};
@@ -143,10 +138,6 @@ namespace TSM.DAL
 				if(ds.Tables[0].Rows[0]["CK_SendGoodsID"].ToString()!="")
 				{
 					model.CK_SendGoodsID=int.Parse(ds.Tables[0].Rows[0]["CK_SendGoodsID"].ToString());
-				}
-				if(ds.Tables[0].Rows[0]["CK_ProductTypeID"].ToString()!="")
-				{
-					model.CK_ProductTypeID=int.Parse(ds.Tables[0].Rows[0]["CK_ProductTypeID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["CK_PeopleID"].ToString()!="")
 				{
@@ -179,7 +170,7 @@ namespace TSM.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select CK_SendGoodsID,CK_ProductTypeID,CK_PeopleID,CK_ProductID,CK_SendGoodsNo,CK_SendGoodsAmount,CK_SendGoodsDate ");
+			strSql.Append("select CK_SendGoodsID,CK_PeopleID,CK_ProductID,CK_SendGoodsNo,CK_SendGoodsAmount,CK_SendGoodsDate ");
 			strSql.Append(" FROM CK_SendGoods ");
 			if(strWhere.Trim()!="")
 			{
@@ -199,7 +190,7 @@ namespace TSM.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" CK_SendGoodsID,CK_ProductTypeID,CK_PeopleID,CK_ProductID,CK_SendGoodsNo,CK_SendGoodsAmount,CK_SendGoodsDate ");
+			strSql.Append(" CK_SendGoodsID,CK_PeopleID,CK_ProductID,CK_SendGoodsNo,CK_SendGoodsAmount,CK_SendGoodsDate ");
 			strSql.Append(" FROM CK_SendGoods ");
 			if(strWhere.Trim()!="")
 			{

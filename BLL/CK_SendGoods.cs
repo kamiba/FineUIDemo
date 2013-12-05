@@ -128,10 +128,6 @@ namespace TSM.BLL
 					{
 						model.CK_SendGoodsID=int.Parse(dt.Rows[n]["CK_SendGoodsID"].ToString());
 					}
-					if(dt.Rows[n]["CK_ProductTypeID"].ToString()!="")
-					{
-						model.CK_ProductTypeID=int.Parse(dt.Rows[n]["CK_ProductTypeID"].ToString());
-					}
 					if(dt.Rows[n]["CK_PeopleID"].ToString()!="")
 					{
 						model.CK_PeopleID=int.Parse(dt.Rows[n]["CK_PeopleID"].ToString());

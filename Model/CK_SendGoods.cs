@@ -11,7 +11,6 @@ namespace TSM.Model
 		{}
 		#region Model
 		private int _ck_sendgoodsid;
-		private int _ck_producttypeid;
 		private int _ck_peopleid;
 		private int _ck_productid;
 		private string _ck_sendgoodsno;
@@ -24,14 +23,6 @@ namespace TSM.Model
 		{
 			set{ _ck_sendgoodsid=value;}
 			get{return _ck_sendgoodsid;}
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public int CK_ProductTypeID
-		{
-			set{ _ck_producttypeid=value;}
-			get{return _ck_producttypeid;}
 		}
 		/// <summary>
 		/// 

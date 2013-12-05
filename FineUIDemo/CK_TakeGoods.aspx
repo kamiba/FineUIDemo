@@ -51,7 +51,7 @@
                     <x:BoundField DataField="ck_takegoodsdate" Width="100px" DataFormatString="{0:yyyy-MM-dd}" HeaderText="取货日期" />
                     <x:BoundField DataField="ck_peoplename" SortField="ck_peoplename" Width="100px" HeaderText="取货人" />
                     <x:BoundField DataField="ck_producttypename" SortField="ck_producttypename" Width="100px" HeaderText="取货类型" />
-                    <x:BoundField DataField="ck_productname" SortField="ck_productname" Width="100px" HeaderText="取货名称" />
+                    <x:BoundField DataField="ck_productname" SortField="ck_productname" Width="100px" HeaderText="货品名称" />
                     <x:BoundField DataField="ck_takegoodsAmount" SortField="ck_takegoodsAmount" ExpandUnusedSpace="true" HeaderText="取货数量" />
   
                     <x:WindowField ColumnID="editField" TextAlign="Center" Icon="Pencil" ToolTip="编辑" WindowID="Window1"
