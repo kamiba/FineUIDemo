@@ -7,9 +7,10 @@ using System.Web.UI.WebControls;
 using FineUI;
 using System.Data;
 
+
 namespace FineUIDemo
 {
-    public partial class CK_SendGoods_new : Page
+    public partial class CK_SendGoods_edit : Page
     {
 
         private TSM.BLL.CK_SendGoods m_bllCK_SendGoods = new TSM.BLL.CK_SendGoods();
@@ -26,12 +27,27 @@ namespace FineUIDemo
                 LoadData();
             }
         }
+        protected int GetQueryIntValue(string queryKey)
+        {
+            int queryIntValue = -1;
+            try
+            {
+                queryIntValue = Convert.ToInt32(Request.QueryString[queryKey]);
+            }
+            catch (Exception)
+            {
+                // TODO
+            }
 
+            return queryIntValue;
+        }
         private void LoadData()
         {
-    
+         
 
             btnClose.OnClientClick = ActiveWindow.GetHideReference();
+
+
             DataSet ds = m_bllCK_People.GetList("");
             DropDownListPeople.DataTextField = "CK_PeopleName";
             DropDownListPeople.DataValueField = "CK_PeopleID";
@@ -45,42 +61,47 @@ namespace FineUIDemo
             DropDownListProduct.DataSource = ds.Tables[0];
             DropDownListProduct.DataBind();
             DropDownListProduct.SelectedIndex = 0;
+
+            int id = GetQueryIntValue("id");
+            TSM.Model.CK_SendGoods modelCK_SendGoods = m_bllCK_SendGoods.GetModel(id);
+
+            if (modelCK_SendGoods == null)
+            {
+                // 参数错误，首先弹出Alert对话框然后关闭弹出窗口
+                Alert.Show("参数错误！", String.Empty, ActiveWindow.GetHideReference());
+                return;
+            }
+            DropDownListProduct.SelectedValue = modelCK_SendGoods.CK_ProductID.ToString();
+            DropDownListPeople.SelectedValue = modelCK_SendGoods.CK_PeopleID.ToString();
+            tbxCount.Text = modelCK_SendGoods.CK_SendGoodsAmount.ToString();
+            DatePicker1.SelectedDate = modelCK_SendGoods.CK_SendGoodsDate;
+            //tbxName.Text = modelCK_SendGoods.CK_SendGoodsName;
+            //tbxPhoneNo.Text = modelCK_SendGoods.CK_PhoneNo;
+            //tbxNote.Text = modelCK_SendGoods.CK_Comment;
+
         }
 
+     
         #endregion
 
         #region Events
-        private string GetTGNumber()
-        {
-            string strNo = "";
-            int nMaxID = m_bllCK_SendGoods.GetMaxId();
-            string strDate = System.DateTime.Now.Year.ToString()
-                   + System.DateTime.Now.Month.ToString().PadLeft(2, '0')
-                   + System.DateTime.Now.Day.ToString().PadLeft(2, '0');
 
-            strNo = "SH" + strDate + nMaxID.ToString().PadLeft(8, '0');
-            return strNo;
-        }
-
-        private void SaveSendGoods()
+        protected void btnSaveClose_Click(object sender, EventArgs e)
         {
-            TSM.Model.CK_SendGoods modelCK_SendGoods = new TSM.Model.CK_SendGoods();
+            int id = GetQueryIntValue("id");
+            TSM.Model.CK_SendGoods modelCK_SendGoods = m_bllCK_SendGoods.GetModel(id);
             modelCK_SendGoods.CK_ProductID = int.Parse(DropDownListProduct.SelectedValue);
             modelCK_SendGoods.CK_PeopleID = int.Parse(DropDownListPeople.SelectedValue);
             modelCK_SendGoods.CK_SendGoodsAmount = int.Parse(tbxCount.Text.Trim());
             modelCK_SendGoods.CK_SendGoodsDate = (DateTime)DatePicker1.SelectedDate;
-            modelCK_SendGoods.CK_SendGoodsNo = GetTGNumber();
-            m_bllCK_SendGoods.Add(modelCK_SendGoods);
 
-        }
 
-        protected void btnSaveClose_Click(object sender, EventArgs e)
-        {
-            SaveSendGoods();
+            m_bllCK_SendGoods.Update(modelCK_SendGoods);
 
-            //Alert.Show("添加成功！", String.Empty, ActiveWindow.GetHidePostBackReference());
+            //FineUI.Alert.Show("保存成功！", String.Empty, FineUI.Alert.DefaultIcon, FineUI.ActiveWindow.GetHidePostBackReference());
             PageContext.RegisterStartupScript(ActiveWindow.GetHidePostBackReference());
         }
+
         #endregion
 
     }
