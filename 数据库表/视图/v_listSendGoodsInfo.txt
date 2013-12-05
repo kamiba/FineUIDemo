@@ -1,0 +1,12 @@
+CREATE VIEW [dbo].[v_listSendGoodsInfo]
+AS
+select ck_sendgoods.ck_sendgoodsid
+, ck_sendgoods.ck_sendgoodsno
+, ck_sendgoods.ck_sendgoodsdate
+,ck_people.ck_peoplename,ck_producttype.ck_producttypename
+,ck_product.ck_productname , ck_sendgoods.ck_sendgoodsAmount 
+,ck_sendgoods.ck_sendgoodsAmount * ck_product.ck_productprice as totalfee
+from ck_sendgoods
+join ck_product on ck_product.ck_productid = ck_sendgoods.ck_productid
+join ck_producttype on ck_producttype.ck_producttypeid = ck_product.ck_producttypeid 
+join ck_people on ck_people.ck_peopleid = ck_sendgoods.ck_peopleid
