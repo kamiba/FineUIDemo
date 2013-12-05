@@ -162,10 +162,10 @@ namespace TSM.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		//public DataSet GetList(int PageSize,int PageIndex,string strWhere)
-		//{
-			//return dal.GetList(PageSize,PageIndex,strWhere);
-		//}
+        public DataSet GetList(int PageSize, int PageIndex, string strWhere)
+        {
+            return dal.GetList(PageSize, PageIndex, strWhere);
+        }
 
 		#endregion  成员方法
 	}
