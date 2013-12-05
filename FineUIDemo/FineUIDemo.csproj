@@ -59,6 +59,7 @@
     <Content Include="CK_Product_edit.aspx" />
     <Content Include="CK_Product_new.aspx" />
     <Content Include="CK_SendGoods.aspx" />
+    <Content Include="CK_SendGoods_new.aspx" />
     <Content Include="CK_TakeGoods.aspx" />
     <Content Include="CK_TakeGoods_edit.aspx" />
     <Content Include="CK_TakeGoods_new.aspx" />
@@ -125,6 +126,13 @@
     </Compile>
     <Compile Include="CK_SendGoods.aspx.designer.cs">
       <DependentUpon>CK_SendGoods.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CK_SendGoods_new.aspx.cs">
+      <DependentUpon>CK_SendGoods_new.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CK_SendGoods_new.aspx.designer.cs">
+      <DependentUpon>CK_SendGoods_new.aspx</DependentUpon>
     </Compile>
     <Compile Include="CK_TakeGoods.aspx.cs">
       <DependentUpon>CK_TakeGoods.aspx</DependentUpon>

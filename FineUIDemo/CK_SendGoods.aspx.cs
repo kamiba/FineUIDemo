@@ -30,7 +30,7 @@ namespace FineUIDemo
         {
 
 
-            btnNew.OnClientClick = Window1.GetShowReference("~/CK_SendGoods_new.aspx", "新增产品");
+            btnNew.OnClientClick = Window1.GetShowReference("~/CK_SendGoods_new.aspx", "新增送货");
 
             //// 默认的排序列和排序方向
             //Grid1.SortColumnIndex = 0;
