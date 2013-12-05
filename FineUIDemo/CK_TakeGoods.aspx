@@ -41,6 +41,9 @@
                             </x:Button>--%>
                             <x:ToolbarFill ID="ToolbarFill1" runat="server">
                             </x:ToolbarFill>
+                            <x:Button ID="Button1" EnableAjax="false" DisableControlBeforePostBack="false"
+                                runat="server" Text="将Grid导出为Excel文件" OnClick="Button1_Click">
+                            </x:Button>
                             <x:Button ID="btnNew" runat="server" Icon="Add" EnablePostBack="false" Text="新增取货">
                             </x:Button>
                         </Items>

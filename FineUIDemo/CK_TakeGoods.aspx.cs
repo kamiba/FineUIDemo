@@ -6,6 +6,8 @@ using System.Web.UI.WebControls;
 
 using FineUI;
 using System.Data;
+using System.Text;
+using System.IO;
 
 namespace FineUIDemo
 {
@@ -155,7 +157,104 @@ namespace FineUIDemo
         {
             BindGrid();
         }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.ClearContent();
+            Response.AddHeader("content-disposition", "attachment; filename=MyExcelFile.xls");
+            Response.ContentType = "application/excel";
+            Response.Charset = "UTF-8";
+            Response.ContentEncoding = System.Text.Encoding.UTF8;
+            Response.Write(GetGridTableHtml(Grid1));
+            Response.End();
+        }
 
+        private string GetGridTableHtml(Grid grid)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.Append("<table cellspacing=\"0\" rules=\"all\" border=\"1\" style=\"border-collapse:collapse;\">");
+
+            sb.Append("<tr>");
+            foreach (GridColumn column in grid.Columns)
+            {
+                sb.AppendFormat("<td>{0}</td>", column.HeaderText);
+            }
+            sb.Append("</tr>");
+
+            //DataTable dtTemp = (DataTable)Grid1.DataSource;
+            //DataSet ds = m_bllCK_TakeGoods.GetList("");
+            //Grid1.DataSource = ds.Tables[0];
+            //Grid1.DataBind();
+            foreach (GridRow row in grid.Rows)
+            {
+                sb.Append("<tr>");
+                foreach (object value in row.Values)
+                {
+                    string html = value.ToString();
+                    if (html.StartsWith(Grid.TEMPLATE_PLACEHOLDER_PREFIX))
+                    {
+                        // 模板列
+                        string templateID = html.Substring(Grid.TEMPLATE_PLACEHOLDER_PREFIX.Length);
+                        Control templateCtrl = row.FindControl(templateID);
+                        html = GetRenderedHtmlSource(templateCtrl);
+                    }
+                    else
+                    {
+                        // 处理CheckBox
+                        if (html.Contains("box-grid-static-checkbox"))
+                        {
+                            if (html.Contains("uncheck"))
+                            {
+                                html = "×";
+                            }
+                            else
+                            {
+                                html = "√";
+                            }
+                        }
+
+                        // 处理图片
+                        if (html.Contains("<img"))
+                        {
+                            string prefix = Request.Url.AbsoluteUri.Replace(Request.Url.AbsolutePath, "");
+                            html = html.Replace("src=\"", "src=\"" + prefix);
+                        }
+                    }
+
+                    sb.AppendFormat("<td>{0}</td>", html);
+                }
+                sb.Append("</tr>");
+            }
+
+            sb.Append("</table>");
+
+         
+            //Grid1.DataSource = dtTemp;
+            //Grid1.DataBind();
+            return sb.ToString();
+        }
+
+        /// <summary>
+        /// 获取控件渲染后的HTML源代码
+        /// </summary>
+        /// <param name="ctrl"></param>
+        /// <returns></returns>
+        private string GetRenderedHtmlSource(Control ctrl)
+        {
+            if (ctrl != null)
+            {
+                using (StringWriter sw = new StringWriter())
+                {
+                    using (HtmlTextWriter htw = new HtmlTextWriter(sw))
+                    {
+                        ctrl.RenderControl(htw);
+
+                        return sw.ToString();
+                    }
+                }
+            }
+            return String.Empty;
+        } 
         #endregion
 
     }
