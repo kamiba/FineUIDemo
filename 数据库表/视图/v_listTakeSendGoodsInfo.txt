@@ -1,0 +1,11 @@
+CREATE VIEW [dbo].[v_listTakeSendGoodsInfo]
+AS 
+select CK_People.ck_PeopleName ,CK_ProductType.CK_ProductTypeName 
+,CK_Product.CK_ProductName,tab1.sum takenum,coalesce(tab2.sum,0) backnum,tab1.sum - coalesce(tab2.sum,0) diffnum from
+(select CK_PeopleID,CK_ProductID,sum(ck_takegoodsAmount) sum from ck_takegoods group by CK_ProductID,CK_PeopleID) tab1
+left join 
+(select CK_PeopleID,CK_ProductID,sum(ck_sendgoodsAmount) sum from ck_sendgoods group by CK_ProductID,CK_PeopleID) tab2
+on tab2.CK_PeopleID =tab1.CK_PeopleID and tab2.CK_ProductID = tab1.CK_ProductID 
+left join CK_Product on CK_Product.CK_ProductID = tab1.CK_ProductID 
+left join CK_ProductType on CK_ProductType.CK_ProductTypeID =  CK_Product.CK_ProductTypeID
+left join CK_People on CK_People.CK_PeopleID = tab1.CK_PeopleID 
