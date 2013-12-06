@@ -99,7 +99,12 @@ namespace TSM.BLL
         public DataSet GetTakeSendStatList(string strWhere)
         {
             return dal.GetTakeSendStatList(strWhere);
-        }		/// <summary>
+        }
+        public DataSet GetPayDetailList(string strWhere)
+        {
+            return dal.GetPayDetailList(strWhere);
+        }
+        /// <summary>
 		/// 获得前几行数据
 		/// </summary>
 		public DataSet GetList(int Top,string strWhere,string filedOrder)
@@ -173,6 +178,12 @@ namespace TSM.BLL
         {
             return dal.GetTakeSendGoodsStatList(PageSize, PageIndex, strWhere);
         }
+
+        public DataSet GetPayDetailList(int PageSize, int PageIndex, string strWhere)
+        {
+            return dal.GetPayDetailList(PageSize, PageIndex, strWhere);
+        }
+        
 		#endregion  成员方法
 	}
 }
