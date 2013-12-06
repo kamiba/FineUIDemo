@@ -96,7 +96,10 @@ namespace TSM.BLL
 		{
 			return dal.GetList(strWhere);
 		}
-		/// <summary>
+        public DataSet GetTakeSendStatList(string strWhere)
+        {
+            return dal.GetTakeSendStatList(strWhere);
+        }		/// <summary>
 		/// 获得前几行数据
 		/// </summary>
 		public DataSet GetList(int Top,string strWhere,string filedOrder)
@@ -166,7 +169,10 @@ namespace TSM.BLL
         {
             return dal.GetList(PageSize, PageIndex, strWhere);
         }
-
+        public DataSet GetTakeSendGoodsStatList(int PageSize, int PageIndex, string strWhere)
+        {
+            return dal.GetTakeSendGoodsStatList(PageSize, PageIndex, strWhere);
+        }
 		#endregion  成员方法
 	}
 }
