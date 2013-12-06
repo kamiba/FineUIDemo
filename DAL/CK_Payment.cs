@@ -45,21 +45,19 @@ namespace TSM.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into CK_Payment(");
-			strSql.Append("CK_PeopleID,CK_SendGoodsID,CK_PayDate,CK_PayMoney,CK_PayComment)");
+			strSql.Append("CK_PeopleID,CK_PayDate,CK_PayMoney,CK_PayComment)");
 			strSql.Append(" values (");
-			strSql.Append("@CK_PeopleID,@CK_SendGoodsID,@CK_PayDate,@CK_PayMoney,@CK_PayComment)");
+			strSql.Append("@CK_PeopleID,@CK_PayDate,@CK_PayMoney,@CK_PayComment)");
 			strSql.Append(";select @@IDENTITY");
 			SqlParameter[] parameters = {
 					new SqlParameter("@CK_PeopleID", SqlDbType.Int,4),
-					new SqlParameter("@CK_SendGoodsID", SqlDbType.Int,4),
 					new SqlParameter("@CK_PayDate", SqlDbType.DateTime),
 					new SqlParameter("@CK_PayMoney", SqlDbType.Decimal,9),
 					new SqlParameter("@CK_PayComment", SqlDbType.VarChar,100)};
 			parameters[0].Value = model.CK_PeopleID;
-			parameters[1].Value = model.CK_SendGoodsID;
-			parameters[2].Value = model.CK_PayDate;
-			parameters[3].Value = model.CK_PayMoney;
-			parameters[4].Value = model.CK_PayComment;
+			parameters[1].Value = model.CK_PayDate;
+			parameters[2].Value = model.CK_PayMoney;
+			parameters[3].Value = model.CK_PayComment;
 
 			object obj = DbHelperSQL.GetSingle(strSql.ToString(),parameters);
 			if (obj == null)
@@ -79,7 +77,6 @@ namespace TSM.DAL
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("update CK_Payment set ");
 			strSql.Append("CK_PeopleID=@CK_PeopleID,");
-			strSql.Append("CK_SendGoodsID=@CK_SendGoodsID,");
 			strSql.Append("CK_PayDate=@CK_PayDate,");
 			strSql.Append("CK_PayMoney=@CK_PayMoney,");
 			strSql.Append("CK_PayComment=@CK_PayComment");
@@ -87,16 +84,14 @@ namespace TSM.DAL
 			SqlParameter[] parameters = {
 					new SqlParameter("@CK_PaymentID", SqlDbType.Int,4),
 					new SqlParameter("@CK_PeopleID", SqlDbType.Int,4),
-					new SqlParameter("@CK_SendGoodsID", SqlDbType.Int,4),
 					new SqlParameter("@CK_PayDate", SqlDbType.DateTime),
 					new SqlParameter("@CK_PayMoney", SqlDbType.Decimal,9),
 					new SqlParameter("@CK_PayComment", SqlDbType.VarChar,100)};
 			parameters[0].Value = model.CK_PaymentID;
 			parameters[1].Value = model.CK_PeopleID;
-			parameters[2].Value = model.CK_SendGoodsID;
-			parameters[3].Value = model.CK_PayDate;
-			parameters[4].Value = model.CK_PayMoney;
-			parameters[5].Value = model.CK_PayComment;
+			parameters[2].Value = model.CK_PayDate;
+			parameters[3].Value = model.CK_PayMoney;
+			parameters[4].Value = model.CK_PayComment;
 
 			DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 		}
@@ -125,7 +120,7 @@ namespace TSM.DAL
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 CK_PaymentID,CK_PeopleID,CK_SendGoodsID,CK_PayDate,CK_PayMoney,CK_PayComment from CK_Payment ");
+			strSql.Append("select  top 1 CK_PaymentID,CK_PeopleID,CK_PayDate,CK_PayMoney,CK_PayComment from CK_Payment ");
 			strSql.Append(" where CK_PaymentID=@CK_PaymentID ");
 			SqlParameter[] parameters = {
 					new SqlParameter("@CK_PaymentID", SqlDbType.Int,4)};
@@ -142,10 +137,6 @@ namespace TSM.DAL
 				if(ds.Tables[0].Rows[0]["CK_PeopleID"].ToString()!="")
 				{
 					model.CK_PeopleID=int.Parse(ds.Tables[0].Rows[0]["CK_PeopleID"].ToString());
-				}
-				if(ds.Tables[0].Rows[0]["CK_SendGoodsID"].ToString()!="")
-				{
-					model.CK_SendGoodsID=int.Parse(ds.Tables[0].Rows[0]["CK_SendGoodsID"].ToString());
 				}
 				if(ds.Tables[0].Rows[0]["CK_PayDate"].ToString()!="")
 				{
@@ -170,7 +161,7 @@ namespace TSM.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select CK_PaymentID,CK_PeopleID,CK_SendGoodsID,CK_PayDate,CK_PayMoney,CK_PayComment ");
+			strSql.Append("select CK_PaymentID,CK_PeopleID,CK_PayDate,CK_PayMoney,CK_PayComment ");
 			strSql.Append(" FROM CK_Payment ");
 			if(strWhere.Trim()!="")
 			{
@@ -190,7 +181,7 @@ namespace TSM.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" CK_PaymentID,CK_PeopleID,CK_SendGoodsID,CK_PayDate,CK_PayMoney,CK_PayComment ");
+			strSql.Append(" CK_PaymentID,CK_PeopleID,CK_PayDate,CK_PayMoney,CK_PayComment ");
 			strSql.Append(" FROM CK_Payment ");
 			if(strWhere.Trim()!="")
 			{

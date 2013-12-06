@@ -132,10 +132,6 @@ namespace TSM.BLL
 					{
 						model.CK_PeopleID=int.Parse(dt.Rows[n]["CK_PeopleID"].ToString());
 					}
-					if(dt.Rows[n]["CK_SendGoodsID"].ToString()!="")
-					{
-						model.CK_SendGoodsID=int.Parse(dt.Rows[n]["CK_SendGoodsID"].ToString());
-					}
 					if(dt.Rows[n]["CK_PayDate"].ToString()!="")
 					{
 						model.CK_PayDate=DateTime.Parse(dt.Rows[n]["CK_PayDate"].ToString());

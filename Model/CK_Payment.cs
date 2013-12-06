@@ -12,7 +12,6 @@ namespace TSM.Model
 		#region Model
 		private int _ck_paymentid;
 		private int _ck_peopleid;
-		private int _ck_sendgoodsid;
 		private DateTime _ck_paydate;
 		private decimal _ck_paymoney;
 		private string _ck_paycomment;
@@ -31,14 +30,6 @@ namespace TSM.Model
 		{
 			set{ _ck_peopleid=value;}
 			get{return _ck_peopleid;}
-		}
-		/// <summary>
-		/// 
-		/// </summary>
-		public int CK_SendGoodsID
-		{
-			set{ _ck_sendgoodsid=value;}
-			get{return _ck_sendgoodsid;}
 		}
 		/// <summary>
 		/// 
