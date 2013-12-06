@@ -1,4 +1,4 @@
 CREATE VIEW [dbo].[v_listPaymentInfo]
 AS 
-select ck_people.ck_peoplename, ck_paymoney, ck_paydate, ck_paycomment from ck_payment
+select ck_payment.ck_paymentid, ck_people.ck_peoplename, ck_paymoney, ck_paydate, ck_paycomment from ck_payment
 join ck_people on ck_payment.ck_peopleid = ck_people.ck_peopleid

@@ -15,5 +15,7 @@
     </TreeNode>
     <TreeNode Text="取送货统计管理" Target="mainframe" NavigateUrl="~/CK_TakeSendGoodsStat.aspx">
     </TreeNode>
+    <TreeNode Text="支付管理" Target="mainframe" NavigateUrl="~/CK_Payment.aspx">
+    </TreeNode>
   </TreeNode>
 </Tree>
