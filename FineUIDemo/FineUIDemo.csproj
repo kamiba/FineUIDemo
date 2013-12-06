@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CK_Payment.aspx" />
+    <Content Include="CK_Payment_edit.aspx" />
     <Content Include="CK_Payment_new.aspx" />
     <Content Include="CK_People.aspx" />
     <Content Include="CK_People_edit.aspx" />
@@ -81,6 +82,13 @@
     </Compile>
     <Compile Include="CK_Payment.aspx.designer.cs">
       <DependentUpon>CK_Payment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CK_Payment_edit.aspx.cs">
+      <DependentUpon>CK_Payment_edit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CK_Payment_edit.aspx.designer.cs">
+      <DependentUpon>CK_Payment_edit.aspx</DependentUpon>
     </Compile>
     <Compile Include="CK_Payment_new.aspx.cs">
       <DependentUpon>CK_Payment_new.aspx</DependentUpon>
