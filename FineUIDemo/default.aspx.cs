@@ -44,13 +44,14 @@ namespace FineUIDemo
 
         protected void btnSubmit_Click(object sender, EventArgs e)
         {
-            string userName = tbxUserName.Text.Trim();
-            string password = tbxPassword.Text.Trim();
+         
+            string userName = tbxUserName.Text;
+            string password = tbxPassword.Text;
 
 
 
 
-            if (userName=="admin"&&password=="admin")
+            if (userName=="admin" && password=="admin")
             {
                 LoginSuccess();
 
@@ -67,7 +68,7 @@ namespace FineUIDemo
 
         private void LoginSuccess()
         {
-
+            
 
             FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1, 
                 "admin", 
@@ -81,6 +82,7 @@ namespace FineUIDemo
             userCookie.HttpOnly = true;
             userCookie.Expires = DateTime.Now.AddMinutes(120);
             Response.Cookies.Add(userCookie);
+        
             Response.Redirect(FormsAuthentication.DefaultUrl);
         }
 
