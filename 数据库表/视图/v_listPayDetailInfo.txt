@@ -1,0 +1,10 @@
+CREATE VIEW [dbo].[v_listPayDetailInfo]
+AS 
+select ck_people.ck_peoplename ,PayMoney as needPayMoney ,coalesce(PayedMoney,0) as PayedMoney,(PayMoney - coalesce(PayedMoney,0)) as unPayedMoney
+from (select ck_peopleid,sum(CK_Product.ck_ProductPrice*ck_SendgoodsAmount) PayMoney from ck_Sendgoods
+LEFT join CK_Product on CK_Product.ck_ProductID = CK_SendGoods.ck_ProductID
+ group by ck_peopleid) tab1
+left join 
+(select ck_peopleid,sum(ck_paymoney) PayedMoney from ck_payment group by ck_peopleid) tab2
+on tab1.[ck_peopleid] = tab2.ck_peopleid
+left join ck_people on tab2.ck_peopleid = ck_people.ck_peopleid
