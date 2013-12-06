@@ -11,10 +11,10 @@ using System.IO;
 
 namespace FineUIDemo
 {
-    public partial class TakeSendGoodsStat : Page
+    public partial class PayDetailStat : Page
     {
 
-        private TSM.BLL.CK_SendGoods m_bllCK_TakeSendGoodsStat = new TSM.BLL.CK_SendGoods();
+        private TSM.BLL.CK_SendGoods m_bllCK_PayDetailStat = new TSM.BLL.CK_SendGoods();
 
         #region Page_Load
 
@@ -54,12 +54,12 @@ namespace FineUIDemo
                 strWhere = "ck_productname = '" + searchText + "'";
             }
 
-            ds = m_bllCK_TakeSendGoodsStat.GetTakeSendStatList(strWhere);
+            ds = m_bllCK_PayDetailStat.GetPayDetailList(strWhere);
             // 在查询添加之后，排序和分页之前获取总记录数
             // Grid1总共有多少条记录
             Grid1.RecordCount = ds.Tables[0].Rows.Count;
 
-            ds = m_bllCK_TakeSendGoodsStat.GetTakeSendGoodsStatList(Grid1.PageSize, Grid1.PageIndex + 1, strWhere);
+            ds = m_bllCK_PayDetailStat.GetPayDetailList(Grid1.PageSize, Grid1.PageIndex + 1, strWhere);
 
 
             Grid1.DataSource = ds.Tables[0];
@@ -137,7 +137,7 @@ namespace FineUIDemo
                 try
                 {
 
-                    m_bllCK_TakeSendGoodsStat.Delete(id);
+                    m_bllCK_PayDetailStat.Delete(id);
                     BindGrid();
 
 
@@ -181,7 +181,7 @@ namespace FineUIDemo
             sb.Append("</tr>");
 
             //DataTable dtTemp = (DataTable)Grid1.DataSource;
-            //DataSet ds = m_bllCK_TakeSendGoodsStat.GetList("");
+            //DataSet ds = m_bllCK_PayDetailStat.GetList("");
             //Grid1.DataSource = ds.Tables[0];
             //Grid1.DataBind();
             foreach (GridRow row in grid.Rows)

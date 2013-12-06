@@ -51,6 +51,7 @@
     <Reference Include="System.Web.Mobile" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="CK_PayDetailStat.aspx" />
     <Content Include="CK_Payment.aspx" />
     <Content Include="CK_Payment_edit.aspx" />
     <Content Include="CK_Payment_new.aspx" />
@@ -76,6 +77,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CK_PayDetailStat.aspx.cs">
+      <DependentUpon>CK_PayDetailStat.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CK_PayDetailStat.aspx.designer.cs">
+      <DependentUpon>CK_PayDetailStat.aspx</DependentUpon>
+    </Compile>
     <Compile Include="CK_Payment.aspx.cs">
       <DependentUpon>CK_Payment.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

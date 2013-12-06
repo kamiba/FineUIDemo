@@ -11,7 +11,7 @@
 namespace FineUIDemo {
     
     
-    public partial class TakeSendGoodsStat {
+    public partial class PayDetailStat {
         
         /// <summary>
         /// form1 控件。

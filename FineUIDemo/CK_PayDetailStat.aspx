@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="TakeSendGoodsStat.aspx.cs" Inherits="FineUIDemo.TakeSendGoodsStat" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="PayDetailStat.aspx.cs" Inherits="FineUIDemo.PayDetailStat" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -10,7 +10,7 @@
     <x:PageManager ID="PageManager1" AutoSizePanelID="Panel1" runat="server" />
     <x:Panel ID="Panel1" runat="server" BodyPadding="5px" EnableLargeHeader="false"
         EnableBackgroundColor="true" ShowBorder="false" Layout="VBox" BoxConfigAlign="Stretch"
-        BoxConfigPosition="Start" ShowHeader="false" Title="取送货统计管理">
+        BoxConfigPosition="Start" ShowHeader="false" Title="支付统计管理">
         <Items>
             <x:Form ID="Form2" runat="server" Height="36px" BodyPadding="5px" ShowHeader="false"
                 ShowBorder="false" EnableBackgroundColor="true">
@@ -30,7 +30,7 @@
                 </Rows>
             </x:Form>
             <x:Grid ID="Grid1" runat="server" BoxFlex="1" ShowBorder="true" ShowHeader="false"
-                EnableCheckBoxSelect="true" EnableRowNumber="true" DataKeyNames="CK_TakeSendGoodsStatID" AllowSorting="true"
+                EnableCheckBoxSelect="true" EnableRowNumber="true" DataKeyNames="CK_PayDetailStatID" AllowSorting="true"
                 OnSort="Grid1_Sort" SortColumnIndex="0" SortDirection="DESC" AllowPaging="true"
                 IsDatabasePaging="true" OnPreDataBound="Grid1_PreDataBound" OnRowCommand="Grid1_RowCommand"
                 OnPageIndexChange="Grid1_PageIndexChange">
@@ -44,20 +44,15 @@
                             <x:Button ID="Button1" EnableAjax="false" DisableControlBeforePostBack="false"
                                 runat="server" Text="将Grid导出为Excel文件" OnClick="Button1_Click">
                             </x:Button>
-                         
+                     
                         </Items>
                     </x:Toolbar>
                 </Toolbars>
                 <Columns>
                     <x:BoundField DataField="ck_PeopleName" SortField="ck_PeopleName" Width="100px" HeaderText="加工人员" />
-                    <x:BoundField DataField="ck_producttypename" SortField="ck_producttypename" Width="100px" HeaderText="货物类型" />
-                    <x:BoundField DataField="ck_productname" SortField="ck_productname" Width="100px" HeaderText="货品名称" />
-                    <x:BoundField DataField="takenum" SortField="takenum" Width="100px" HeaderText="取走数量" />
-                    <x:BoundField DataField="backnum" SortField="backnum" Width="100px" HeaderText="送回数量" />
-
-                    <x:BoundField DataField="diffnum" SortField="diffnum" ExpandUnusedSpace="true" HeaderText="未送回数量" />
-  
-             
+                    <x:BoundField DataField="needPayMoney" SortField="needPayMoney" Width="100px" HeaderText="应付费用" />
+                    <x:BoundField DataField="PayedMoney" SortField="PayedMoney" Width="100px" HeaderText="实付费用" />
+                    <x:BoundField DataField="unPayedMoney" SortField="unPayedMoney" Width="100px" HeaderText="未付费用" />
                 </Columns>
             </x:Grid>
         </Items>
