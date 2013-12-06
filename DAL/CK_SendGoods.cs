@@ -179,6 +179,18 @@ namespace TSM.DAL
 			return DbHelperSQL.Query(strSql.ToString());
 		}
 
+        public DataSet GetTakeSendStatList(string strWhere)
+        {
+            StringBuilder strSql = new StringBuilder();
+            strSql.Append("select * ");
+            strSql.Append(" FROM v_listTakeSendGoodsInfo ");
+            if (strWhere.Trim() != "")
+            {
+                strSql.Append(" where " + strWhere);
+            }
+            return DbHelperSQL.Query(strSql.ToString());
+        }
+
 		/// <summary>
 		/// 获得前几行数据
 		/// </summary>
@@ -225,6 +237,26 @@ namespace TSM.DAL
 			return DbHelperSQL.RunProcedure("UP_GetRecordByPage",parameters,"ds");
 		}
 
+        public DataSet GetTakeSendGoodsStatList(int PageSize, int PageIndex, string strWhere)
+        {
+            SqlParameter[] parameters = {
+					new SqlParameter("@tblName", SqlDbType.VarChar, 255),
+					new SqlParameter("@fldName", SqlDbType.VarChar, 255),
+					new SqlParameter("@PageSize", SqlDbType.Int),
+					new SqlParameter("@PageIndex", SqlDbType.Int),
+					new SqlParameter("@IsReCount", SqlDbType.Bit),
+					new SqlParameter("@OrderType", SqlDbType.Bit),
+					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
+					};
+            parameters[0].Value = "v_listTakeSendGoodsInfo";
+            parameters[1].Value = "ck_PeopleName";
+            parameters[2].Value = PageSize;
+            parameters[3].Value = PageIndex;
+            parameters[4].Value = 0;
+            parameters[5].Value = 0;
+            parameters[6].Value = strWhere;
+            return DbHelperSQL.RunProcedure("UP_GetRecordByPage", parameters, "ds");
+        }
 		#endregion  成员方法
 	}
 }
